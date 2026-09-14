@@ -29,9 +29,41 @@ public class Board {
             Character[] currentRow = board.get(i);
             if(currentRow[actualColumn] == '-') {
                 currentRow[actualColumn] = player;
+                checkWin(i, actualColumn, player);
                 return;
             }
         }
         throw new ColumnFullException("The column is already full.");
+    }
+    boolean checkWin(int row, int column, char player){
+        Character[] currentRow = board.get(row);
+        int counter = 1;
+        int tempColumn = column;
+        while (tempColumn <= 6 && currentRow[tempColumn + 1] == player) {
+            counter++;
+            if(counter == 4) {
+                return true;
+            }
+            tempColumn++;
+        }
+        tempColumn = column;
+        while (tempColumn >= -1 && currentRow[tempColumn - 1] == player){
+            counter ++;
+            if(counter == 4) {
+                return true;
+            }
+            tempColumn--;
+        }
+        int tempRow = row;
+        counter = 1;
+        while (tempRow < 5 && board.get(tempRow + 1)[column] == player) {
+            counter++;
+            if(counter == 4) {
+                return true;
+            }
+            tempRow++;
+        }
+        counter = 1;
+        return false;
     }
 }
