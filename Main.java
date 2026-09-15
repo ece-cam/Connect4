@@ -1,3 +1,7 @@
+/**
+ * Manages the user input, player turns.
+ * @author Ece Camurlu
+ */
 public class Main {
     public static void main (String[] args) {
         Board board = new Board();
