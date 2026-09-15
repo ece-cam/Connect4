@@ -29,7 +29,9 @@ public class Board {
             Character[] currentRow = board.get(i);
             if(currentRow[actualColumn] == '-') {
                 currentRow[actualColumn] = player;
-                checkWin(i, actualColumn, player);
+                if(checkWin(i, actualColumn, player) == true) {
+                    System.out.println("The " + player + " wins!");
+                }
                 return;
             }
         }
@@ -39,7 +41,7 @@ public class Board {
         Character[] currentRow = board.get(row);
         int counter = 1;
         int tempColumn = column;
-        while (tempColumn <= 6 && currentRow[tempColumn + 1] == player) {
+        while (tempColumn <= 5 && currentRow[tempColumn + 1] == player) {
             counter++;
             if(counter == 4) {
                 return true;
@@ -47,7 +49,7 @@ public class Board {
             tempColumn++;
         }
         tempColumn = column;
-        while (tempColumn >= -1 && currentRow[tempColumn - 1] == player){
+        while (tempColumn > 0 && currentRow[tempColumn - 1] == player){
             counter ++;
             if(counter == 4) {
                 return true;
@@ -64,6 +66,47 @@ public class Board {
             tempRow++;
         }
         counter = 1;
+        tempColumn = column;
+        tempRow = row;
+        while(tempRow < 5 && tempColumn > 0 && board.get(tempRow + 1)[tempColumn - 1] == player) {
+            counter++;
+            if(counter == 4) {
+                return true;
+            }
+            tempRow++;
+            tempColumn--;
+        }
+        tempColumn = column;
+        tempRow = row;
+        while(tempColumn <= 5 && tempRow > 0 && board.get(tempRow - 1)[tempColumn + 1] == player) {
+            counter++;
+            if(counter == 4) {
+                return true;
+            }
+            tempRow--;
+            tempColumn++;
+        }
+        counter = 1;
+        tempColumn = column;
+        tempRow = row;
+        while(tempRow > 0 && tempColumn > 0 && board.get(tempRow - 1)[tempColumn - 1] == player) {
+            counter++;
+            if(counter == 4) {
+                return true;
+            }
+            tempRow--;
+            tempColumn--;
+        }
+        tempColumn = column;
+        tempRow = row;
+        while(tempRow < 5 && tempColumn <= 5 && board.get(tempRow + 1)[tempColumn + 1] == player) {
+            counter++;
+            if(counter == 4) {
+                return true;
+            }
+            tempRow++;
+            tempColumn++;
+        }
         return false;
     }
 }

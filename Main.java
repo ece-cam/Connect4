@@ -5,6 +5,12 @@ public class Main {
         board.printBoard();
         try{
             board.dropCoin(3, 'X');
+            board.printBoard();
+            board.dropCoin(4, 'X');
+            board.printBoard();
+            board.dropCoin(5, 'X');
+            board.printBoard();
+            board.dropCoin(6, 'X');
         } catch(ColumnFullException e){
             System.out.println("Try a new column.");
         } catch(IllegalColumnException e){
